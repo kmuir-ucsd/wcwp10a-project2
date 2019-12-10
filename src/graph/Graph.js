@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { VictoryTheme, VictoryArea, VictoryChart, VictoryLine, VictoryAxis } from 'victory';
+import { VictoryTheme, VictoryArea, VictoryChart, VictoryLine, VictoryAxis, VictoryLabel } from 'victory';
 import useDebounce from '../debounce';
 import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
@@ -28,7 +28,10 @@ const interpolateData = (data, position) => {
     let minData = null;
     let maxData = null;
     data.forEach(({ index, value }) => {
-        if (index === position) return value;
+        if (index === position) {
+            console.log(`using endpoint ${index} value ${value[value.length - 1].y}`);
+            return value;
+        }
         if (index < min && index > position) {
             min = index;
             minData = value;
@@ -43,20 +46,32 @@ const interpolateData = (data, position) => {
     return interpolateSet(maxData, minData, (position - max) / (min - max));
 }
 
-export const Graph = ({ source, index }) => {
+export const Graph = ({ source, index, peakCallback, endCallback }) => {
 
     const data = source.data;
     const name = source.name;
 
-    const debouncedIndex = useDebounce(index, 1000 / 30);
+    const debouncedIndex = useDebounce(index, 200);
 
     const maxY = useMemo(
         () => {
             let max = -Infinity;
-            data.forEach(({ value }) => value.forEach(({ y, w }) => { if (y > max) max = y + (w / 2) }));
+            let maxX = 0
+            data.forEach(({ value }) =>
+                value.forEach(({ x, y, w }) => {
+                    if (y > max) {
+                        max = y + (w / 2);
+                        maxX = x;
+                    }
+                })
+            );
+            if (peakCallback) {
+                console.log(maxX);
+                peakCallback(maxX);
+            }
             return max;
         },
-        [data]
+        [data, peakCallback]
     );
 
     const minY = useMemo(
@@ -70,19 +85,31 @@ export const Graph = ({ source, index }) => {
 
     const padding = (maxY - minY) / 10
 
-    const interpolatedData = useMemo(
-        () => interpolateData(data, debouncedIndex),
-        [data, debouncedIndex]
-    );
+    const interpolatedData = useMemo(() => interpolateData(data, debouncedIndex), [data, debouncedIndex]);
 
-    const processedData = useMemo(
-        () => interpolatedData.map(x => ({
-            top: x.y + (x.w / 2),
-            bottom: x.y - (x.w / 2),
-            ...x,
-        })),
-        [interpolatedData]
-    );
+    if (peakCallback) {
+        let max = -Infinity;
+        let maxX = 0
+        interpolatedData.forEach(({ x, y }) => {
+            if (y > max) {
+                max = y;
+                maxX = x;
+            }
+        }
+        );
+        peakCallback(maxX);
+    }
+
+    if (endCallback) {
+        endCallback(interpolatedData[interpolatedData.length - 1].y);
+    }
+
+
+    const processedData = useMemo(() => interpolatedData.map(x => ({
+        top: x.y + (x.w / 2),
+        bottom: x.y - (x.w / 2),
+        ...x,
+    })), [interpolatedData]);
 
     return (
         <Card>
@@ -94,13 +121,14 @@ export const Graph = ({ source, index }) => {
                     maxDomain={{ y: maxY + padding }}
                     minDomain={{ y: minY - padding }}
                     theme={VictoryTheme.grayscale}
-                    padding={{top:10, bottom: 10, left: 50, right: 50}}
+                    padding={{ top: 10, bottom: 10, left: 50, right: 50 }}
                 >
                     <VictoryAxis
+                        dependentAxis
                         tickFormat={x => `${x}`}
+
                     />
                     <VictoryAxis
-                        dependentAxis
                         tickFormat={x => `${x}`}
                     />
                     <VictoryArea

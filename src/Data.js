@@ -1,53 +1,53 @@
 export const c02Concentration = {name: "C02 Concentration (ppm)", data: [
     {
-        index: 2.6,
+        index: 2.59,
         value: [
             {x: 2000, y: 370, w: 1},
             {x: 2020, y: 400, w: 1},
-            {x: 2040, y: 440, w: 1},
-            {x: 2060, y: 430, w: 1},
-            {x: 2080, y: 420, w: 1},
-            {x: 2100, y: 410, w: 1},
+            {x: 2040, y: 440, w: 25},
+            {x: 2060, y: 430, w: 50},
+            {x: 2080, y: 420, w: 75},
+            {x: 2100, y: 410, w: 100},
         ]
     },
     {
-        index: 4.5,
+        index: 4.49,
         value: [
             {x: 2000, y: 370, w: 1},
             {x: 2020, y: 400, w: 1},
-            {x: 2040, y: 450, w: 1},
-            {x: 2060, y: 500, w: 1},
-            {x: 2080, y: 510, w: 1},
-            {x: 2100, y: 520, w: 1},
+            {x: 2040, y: 450, w: 25},
+            {x: 2060, y: 500, w: 50},
+            {x: 2080, y: 510, w: 75},
+            {x: 2100, y: 520, w: 100},
         ]
     },
     {
-        index: 6,
+        index: 6.01,
         value: [
             {x: 2000, y: 370, w: 1},
             {x: 2020, y: 400, w: 1},
-            {x: 2040, y: 440, w: 1},
-            {x: 2060, y: 520, w: 1},
-            {x: 2080, y: 570, w: 1},
-            {x: 2100, y: 610, w: 1},
+            {x: 2040, y: 440, w: 25},
+            {x: 2060, y: 520, w: 50},
+            {x: 2080, y: 570, w: 75},
+            {x: 2100, y: 610, w: 100},
         ]
     },
     {
-        index: 8.5,
+        index: 8.49,
         value: [
             {x: 2000, y: 370, w: 1},
             {x: 2020, y: 400, w: 1},
-            {x: 2040, y: 500, w: 1},
-            {x: 2060, y: 600, w: 1},
-            {x: 2080, y: 720, w: 1},
-            {x: 2100, y: 950, w: 1},
+            {x: 2040, y: 500, w: 25},
+            {x: 2060, y: 600, w: 50},
+            {x: 2080, y: 720, w: 75},
+            {x: 2100, y: 950, w: 100},
         ]
     },
 ]};
 
 export const SLR = {name: "Sea Level Rise (m)", data: [
     {
-        index: 2.6,
+        index: 2.59,
         value: [
             {x: 2000, y: 0, w: 0},
             {x: 2025, y: .1, w: .05},
@@ -57,7 +57,7 @@ export const SLR = {name: "Sea Level Rise (m)", data: [
         ]
     },
     {
-        index: 4.5,
+        index: 4.49,
         value: [
             {x: 2000, y: 0, w: 0},
             {x: 2025, y: .12, w: .05},
@@ -67,7 +67,7 @@ export const SLR = {name: "Sea Level Rise (m)", data: [
         ]
     },
     {
-        index: 8.5,
+        index: 8.49,
         value: [
             {x: 2000, y: 0, w: 0},
             {x: 2025, y: .12, w: .05},
@@ -80,7 +80,7 @@ export const SLR = {name: "Sea Level Rise (m)", data: [
 
 export const c02Emissions = {name: "C02 Emissions (GtC)", data: [
     {
-        index: 2.6,
+        index: 2.59,
         value: [
             {x: 2000, y: 7.5, w: 1},
             {x: 2010, y: 8.5, w: 1},
@@ -96,7 +96,7 @@ export const c02Emissions = {name: "C02 Emissions (GtC)", data: [
         ]
     },
     {
-        index: 4.5,
+        index: 4.49,
         value: [
             {x: 2000, y: 7.5, w: 1},
             {x: 2010, y: 8, w: 1},
@@ -112,7 +112,7 @@ export const c02Emissions = {name: "C02 Emissions (GtC)", data: [
         ]
     },
     {
-        index: 6,
+        index: 6.01,
         value: [
             {x: 2000, y: 7.5, w: 1},
             {x: 2010, y: 8, w: 1},
@@ -128,7 +128,7 @@ export const c02Emissions = {name: "C02 Emissions (GtC)", data: [
         ]
     },
     {
-        index: 8.5,
+        index: 8.49,
         value: [
             {x: 2000, y: 7.5, w: 1},
             {x: 2010, y: 10, w: 1},
@@ -145,9 +145,9 @@ export const c02Emissions = {name: "C02 Emissions (GtC)", data: [
     },
 ]};
 
-export const temp = {name: "Average Temprature Change (C)", data: [
+export const temp = {name: "Average Temprature Change (℃)", data: [
     {
-        index: 2.6,
+        index: 2.59,
         value: [
             {x: 2000, y: .1, w: .25},
             {x: 2020, y: .5, w: .5},
@@ -158,7 +158,7 @@ export const temp = {name: "Average Temprature Change (C)", data: [
         ]
     },
     {
-        index: 8.5,
+        index: 8.,
         value: [
             {x: 2000, y: .1, w: .25},
             {x: 2020, y: .5, w: .5},

@@ -7,7 +7,9 @@
     "react": "^16.11.0",
     "react-debounce-props": "^2.0.0",
     "react-dom": "^16.11.0",
+    "react-lorem-ipsum": "^1.4.4",
     "react-scripts": "3.2.0",
+    "typeface-roboto": "^0.0.75",
     "victory": "^33.1.6"
   },
   "scripts": {

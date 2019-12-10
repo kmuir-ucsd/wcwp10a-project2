@@ -6,10 +6,10 @@ export default function useDebounce(value, delay) {
   const [debouncedValue, setDebouncedValue] = useState(value);
   const [locked, setLocked] = useState(false);
 
-  if (!locked) {
+  if (!locked && debouncedValue !== value) {
     setLocked(true);
+    setDebouncedValue(value);
     setTimeout(() => {
-        setDebouncedValue(value);
         setLocked(false);
     }, delay);
   }
